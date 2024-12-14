@@ -1,0 +1,16 @@
+.center-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--base-color);
+}
+.login-form {
+  width: 30%;
+  background-color: white;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+}

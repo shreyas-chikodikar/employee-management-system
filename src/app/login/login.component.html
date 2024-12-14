@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="center-align">
+  <mat-card class="login-form">
+    <mat-card-content class="card-content">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput type="text" [(ngModel)]="username" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="password" />
+      </mat-form-field>
+      <button
+        color="primary"
+        mat-raised-button
+        aria-label="Clear"
+        (click)="navigate()"
+      >
+        Login
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>
