@@ -27,15 +27,31 @@ export class AppDB extends Dexie {
         from: new Date(),
       },
       {
-        employeename: 'Joseph Manadan',
+        employeename: 'Matt Broker',
         role: 'Flutter Developer',
         from: new Date(),
       },
       {
-        employeename: 'Joseph Manadan',
-        role: 'Flutter Developer',
+        employeename: 'Kayla Connor',
+        role: 'Product Designer',
+        from: new Date(),
+      },
+      {
+        employeename: 'Chandler Bing',
+        role: 'QA Tester',
+        from: new Date(),
+      },
+      {
+        employeename: 'John Wick',
+        role: 'QA Tester',
         from: new Date(),
         to: new Date(new Date().getDate() + 7),
+      },
+      {
+        employeename: 'Harvey Dent',
+        role: 'Product Owner',
+        from: new Date(),
+        to: new Date(new Date().getDate() + 8),
       },
     ]);
   }
