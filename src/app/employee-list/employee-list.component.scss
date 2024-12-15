@@ -7,6 +7,13 @@
   flex-direction: column;
   height: 100%;
 }
+.row-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
 .header-font {
   color: var(--base-color);
   font-weight: bold;
@@ -41,4 +48,7 @@
   margin: 0 1rem 2rem 0;
   width: 4.5rem;
   height: 5rem;
+}
+.theme-icons .mat-icon {
+  color: var(--base-color);
 }

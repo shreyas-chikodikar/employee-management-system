@@ -74,6 +74,7 @@ export class AddEmployeeComponent implements OnInit {
   breakpoint: any;
   dateCols: any;
   displayDate: any;
+  employees: any;
 
   exampleHeader = ExampleHeader;
 
@@ -96,12 +97,21 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    await db.employees.add({
-      employeename: form.get('employeeName')?.value || '',
-      role: form.get('role')?.value || '',
-      from: form.get('from')?.value.toDate(),
-      to: form.get('to')?.value?.toDate() || null,
-    });
+    if (!this.employees.id) {
+      await db.employees.add({
+        employeename: form.get('employeeName')?.value || '',
+        role: form.get('role')?.value || '',
+        from: new Date(form.get('from')?.value),
+        to: form.get('to')?.value ? new Date(form.get('to')?.value) : undefined,
+      });
+    } else {
+      await db.employees.update(this.employees.id, {
+        employeename: form.get('employeeName')?.value || '',
+        role: form.get('role')?.value || '',
+        from: new Date(form.get('from')?.value),
+        to: form.get('to')?.value ? new Date(form.get('to')?.value) : undefined,
+      });
+    }
     this.router.navigate(['../employee-list']);
   }
 
@@ -112,13 +122,15 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   async getEmployee(id: any) {
-    const getEmployee = await db.employees.get(Number(id));
-    this.addEmployeeForm.patchValue({
-      employeeName: getEmployee?.employeename,
-      role: getEmployee?.role,
-      from: getEmployee?.from,
-      to: getEmployee?.to,
-    });
+    this.employees = await db.employees.get(Number(id));
+    if (this.employees) {
+      this.addEmployeeForm.patchValue({
+        employeeName: this.employees.employeename,
+        role: this.employees.role,
+        from: new Date(this.employees.from),
+        to: this.employees.to,
+      });
+    }
   }
 
   opened() {

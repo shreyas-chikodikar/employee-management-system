@@ -28,15 +28,17 @@ export class EmployeeListComponent implements OnInit {
     this.sharedDataService.setData('Employee List');
     this.employeeList$.subscribe((emp) => {
       this.employeeList = emp;
-      this.employeeList.forEach((employee) => {
-        if (employee.to) this.previousEmployees.push(employee);
-        else this.currentEmployees.push(employee);
-      });
+      this.employeeCategory();
     });
   }
 
-  swipe(e: TouchEvent) {
-    console.log(e);
+  employeeCategory() {
+    this.currentEmployees = [];
+    this.previousEmployees = [];
+    this.employeeList.forEach((employee) => {
+      if (employee.to) this.previousEmployees.push(employee);
+      else this.currentEmployees.push(employee);
+    });
   }
 
   addEmployee() {
@@ -51,7 +53,7 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['/add-employee', id], { relativeTo: this.route });
   }
 
-  create() {
-    console.log('hello');
+  async delete(id: any) {
+    await db.employees.delete(Number(id));
   }
 }

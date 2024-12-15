@@ -14,14 +14,16 @@
       <p class="header-font">Current Employees</p>
       <mat-card>
         <mat-card-content class="employee-card">
-          <div
-            *ngFor="let employee of currentEmployees"
-            class="column-flex list"
-            (click)="edit(employee.id)"
-          >
-            <span style="font-weight: bold">{{ employee.employeename }}</span>
-            <span>{{ employee.role }}</span>
-            <span>From {{ employee.from | date : "dd MMM,yyy" }}</span>
+          <div *ngFor="let employee of currentEmployees" class="list row-flex">
+            <div class="column-flex">
+              <span style="font-weight: bold">{{ employee.employeename }}</span>
+              <span>{{ employee.role }}</span>
+              <span>From {{ employee.from | date : "dd MMM,yyy" }}</span>
+            </div>
+            <div class="theme-icons">
+              <mat-icon (click)="edit(employee.id)">edit</mat-icon>
+              <mat-icon (click)="delete(employee.id)">delete</mat-icon>
+            </div>
           </div>
         </mat-card-content>
       </mat-card>
@@ -30,17 +32,19 @@
       <p class="header-font">Previous Employees</p>
       <mat-card>
         <mat-card-content class="employee-card">
-          <div
-            *ngFor="let employee of previousEmployees"
-            class="column-flex list"
-            (click)="edit(employee.id)"
-          >
-            <span style="font-weight: bold">{{ employee.employeename }}</span>
-            <span>{{ employee.role }}</span>
-            <span
-              >{{ employee.from | date : "dd MMM,yyy" }} -
-              {{ employee.to | date : "dd MMM,yyy" }}</span
-            >
+          <div *ngFor="let employee of previousEmployees" class="row-flex list">
+            <div class="column-flex">
+              <span style="font-weight: bold">{{ employee.employeename }}</span>
+              <span>{{ employee.role }}</span>
+              <span
+                >{{ employee.from | date : "dd MMM,yyy" }} -
+                {{ employee.to | date : "dd MMM,yyy" }}</span
+              >
+            </div>
+            <div class="theme-icons">
+              <mat-icon (click)="edit(employee.id)">edit</mat-icon>
+              <mat-icon (click)="delete(employee.id)">delete</mat-icon>
+            </div>
           </div>
         </mat-card-content>
       </mat-card>
