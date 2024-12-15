@@ -1,12 +1,9 @@
-<img
-  *ngIf="employeeList.length == 0"
-  src="../../assets/no-employee.png"
-  id="noemployee"
-  alt="no-employee"
-/>
+<div *ngIf="employeeList.length == 0" id="noemployee" class="img-div">
+  <img src="../../assets/no-employee.png" alt="no-employee" />
+</div>
 
-<div class="column-flex" style="height: 100%">
-  <div *ngIf="employeeList.length > 0" class="emp-list">
+<div *ngIf="employeeList.length > 0" class="column-flex" style="height: 100%">
+  <div class="emp-list">
     <div *ngIf="currentEmployees.length > 0">
       <p class="header-font">Current Employees</p>
       <mat-card>
@@ -66,7 +63,7 @@
       </mat-card>
     </div>
   </div>
-  <footer>
+  <footer *ngIf="employeeList.length > 0">
     <span style="margin: 1rem">Swipe left to delete, edit.</span>
     <button class="add-button" mat-fab (click)="addEmployee()">
       <mat-icon>add</mat-icon>
