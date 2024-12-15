@@ -8,7 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SharedDataService } from '../../services/shared-data.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +36,7 @@ import {
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { Subject, takeUntil } from 'rxjs';
+import { db } from '../../model/employeedb';
 
 const DATE_FORMAT = {
   parse: {
@@ -61,6 +62,8 @@ export class AddEmployeeComponent implements OnInit {
     from: new FormControl(),
     to: new FormControl(),
   });
+  id: any;
+  edit: boolean = false;
 
   roles: String[] = [
     'Product Designer',
@@ -68,16 +71,54 @@ export class AddEmployeeComponent implements OnInit {
     'QA Tester',
     'Product Owner',
   ];
+  breakpoint: any;
+  dateCols: any;
 
   exampleHeader = ExampleHeader;
 
-  constructor(private sharedDataService: SharedDataService) {}
+  constructor(
+    private sharedDataService: SharedDataService,
+    private router: Router,
+    private _route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.breakpoint = window.innerWidth <= 600 ? 2 : 4;
+    this.dateCols = window.innerWidth <= 600 ? 1 : 2;
     this.sharedDataService.setData('Add Employee Details');
+    this.edit = false;
+    this.id = this._route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.edit = true;
+      this.getEmployee(this.id);
+    }
   }
 
-  onSubmit(form: FormGroup) {}
+  async onSubmit(form: FormGroup) {
+    await db.employees.add({
+      employeename: form.get('employeeName')?.value || '',
+      role: form.get('role')?.value || '',
+      from: form.get('from')?.value.toDate(),
+      to: form.get('to')?.value?.toDate() || null,
+    });
+    this.router.navigate(['../employee-list']);
+  }
+
+  onCancel() {
+    this.edit
+      ? this.router.navigate(['../../employee-list'])
+      : this.router.navigate(['../employee-list']);
+  }
+
+  async getEmployee(id: any) {
+    const getEmployee = await db.employees.get(Number(id));
+    this.addEmployeeForm.patchValue({
+      employeeName: getEmployee?.employeename,
+      role: getEmployee?.role,
+      from: getEmployee?.from,
+      to: getEmployee?.to,
+    });
+  }
 }
 
 @Component({

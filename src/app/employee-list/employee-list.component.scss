@@ -25,6 +25,9 @@
   padding-top: 0;
   padding: 0;
 }
+.employee-card:hover {
+  cursor: pointer;
+}
 .list {
   border-bottom: 1px solid lightgrey;
   padding: 1rem;

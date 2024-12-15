@@ -34,6 +34,13 @@ import { LandingComponent } from './landing.component';
                 (m) => m.AddEmployeeModule
               ),
           },
+          {
+            path: 'add-employee/:id',
+            loadChildren: () =>
+              import('../add-employee/add-employee.component').then(
+                (m) => m.AddEmployeeModule
+              ),
+          },
         ],
       },
     ]),

@@ -1,6 +1,5 @@
 <form
   [formGroup]="addEmployeeForm"
-  (ngSubmit)="onSubmit(addEmployeeForm)"
   style="
     margin-top: 2rem;
     height: 100%;
@@ -9,7 +8,7 @@
     justify-content: space-between;
   "
 >
-  <mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-list [cols]="breakpoint" rowHeight="2.5:1">
     <mat-grid-tile colspan="2">
       <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
         <span matPrefix><mat-icon>person</mat-icon></span>
@@ -32,7 +31,7 @@
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1">
+    <mat-grid-tile [colspan]="dateCols">
       <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
         <input matInput [matDatepicker]="picker1" formControlName="from" />
         <mat-datepicker-toggle
@@ -50,7 +49,7 @@
       </mat-form-field>
     </mat-grid-tile>
     <!-- to date -->
-    <mat-grid-tile colspan="1">
+    <mat-grid-tile [colspan]="dateCols">
       <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
         <input matInput [matDatepicker]="picker2" formControlName="to" />
         <mat-datepicker-toggle matIconPrefix [for]="picker2">
@@ -75,7 +74,7 @@
       gap: 2rem;
     "
   >
-    <button mat-raised-button color="primary" [routerLink]="'../employee-list'">
+    <button mat-raised-button color="primary" (click)="onCancel()">
       Cancel
     </button>
     <button

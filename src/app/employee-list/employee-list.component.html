@@ -17,6 +17,7 @@
           <div
             *ngFor="let employee of currentEmployees"
             class="column-flex list"
+            (click)="edit(employee.id)"
           >
             <span style="font-weight: bold">{{ employee.employeename }}</span>
             <span>{{ employee.role }}</span>
@@ -32,6 +33,7 @@
           <div
             *ngFor="let employee of previousEmployees"
             class="column-flex list"
+            (click)="edit(employee.id)"
           >
             <span style="font-weight: bold">{{ employee.employeename }}</span>
             <span>{{ employee.role }}</span>
@@ -45,7 +47,7 @@
     </div>
   </div>
   <footer>
-    <span style="margin: 1rem">Swipe left to delete</span>
+    <span style="margin: 1rem">Swipe left to delete. Click card to edit.</span>
     <button class="add-button" mat-fab (click)="addEmployee()">
       <mat-icon>add</mat-icon>
     </button>
