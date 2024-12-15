@@ -10,6 +10,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow: hidden;
 }
 * {
   margin: 0;
@@ -18,10 +19,65 @@ html {
   --base-color: #5baffe;
 }
 
-.mat-mdc-raised-button {
-  background-color: var(--base-color) !important;
+.mat-mdc-raised-button.mat-primary.mat-mdc-raised-button {
+  background-color: var(--base-color);
 }
 
 .theme-color {
   background-color: var(--base-color) !important;
+}
+
+footer {
+  background-color: lightgrey;
+  color: rgb(165, 164, 164);
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-mdc-text-field-wrapper {
+  background-color: white;
+}
+
+mat-select .mat-mdc-select-arrow {
+  color: var(--base-color);
+}
+
+mat-datepicker-content .mat-datepicker-content-container {
+  // margin-top: 5rem;
+}
+
+.top-date-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+}
+
+.top-date-buttons button {
+  background-color: rgb(230, 243, 255) !important;
+  color: var(--base-color) !important;
+}
+
+.top-date-buttons button:focus {
+  background-color: var(--base-color) !important;
+  color: white !important;
+}
+
+mat-datepicker-content .mat-datepicker-actions .bottom-date-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.header1 .top-date-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.header1 .no-date,
+.header2 .next-monday,
+.header2 .next-tuesday,
+.header2 .next-week {
+  display: none;
 }

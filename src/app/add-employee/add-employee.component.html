@@ -1,0 +1,91 @@
+<form
+  [formGroup]="addEmployeeForm"
+  (ngSubmit)="onSubmit(addEmployeeForm)"
+  style="
+    margin-top: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  "
+>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile colspan="2">
+      <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
+        <span matPrefix><mat-icon>person</mat-icon></span>
+        <input
+          id="employee-name"
+          matInput
+          formControlName="employeeName"
+          placeholder="Employee Name"
+          type="text"
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
+        <span matPrefix><mat-icon>work</mat-icon></span>
+        <mat-select formControlName="role" placeholder="Select Role">
+          <mat-option *ngFor="let role of this.roles" [value]="role">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
+        <input matInput [matDatepicker]="picker1" formControlName="from" />
+        <mat-datepicker-toggle
+          matIconPrefix
+          [for]="picker1"
+          matDatepickerToggleIcon
+        >
+          <mat-icon matDatepickerToggleIcon> event </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker
+          panelClass="header1"
+          [calendarHeaderComponent]="exampleHeader"
+          #picker1
+        ></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+    <!-- to date -->
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
+        <input matInput [matDatepicker]="picker2" formControlName="to" />
+        <mat-datepicker-toggle matIconPrefix [for]="picker2">
+          <mat-icon matDatepickerToggleIcon> event </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker
+          panelClass="header2"
+          [calendarHeaderComponent]="exampleHeader"
+          #picker2
+        >
+        </mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div
+    style="
+      margin: 3rem 0;
+      padding: 1rem 1rem 0 0;
+      border-top: 1px solid lightgrey;
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+    "
+  >
+    <button mat-raised-button color="primary" [routerLink]="'../employee-list'">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!addEmployeeForm.valid"
+      (click)="onSubmit(addEmployeeForm)"
+    >
+      Submit
+    </button>
+  </div>
+</form>
