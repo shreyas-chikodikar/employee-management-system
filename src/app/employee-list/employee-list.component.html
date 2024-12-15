@@ -7,7 +7,7 @@
 
 <div class="column-flex" style="height: 100%">
   <div *ngIf="employeeList.length > 0" class="emp-list">
-    <div>
+    <div *ngIf="currentEmployees.length > 0">
       <p class="header-font">Current Employees</p>
       <mat-card>
         <mat-card-content class="employee-card">
@@ -38,7 +38,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div>
+    <div *ngIf="previousEmployees.length > 0">
       <p class="header-font">Previous Employees</p>
       <mat-card>
         <mat-card-content class="employee-card">
