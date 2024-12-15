@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
-  { path: 'employee-list', component: EmployeeListComponent },
+  {
+    path: 'landing',
+    loadChildren: () =>
+      import('./landing/landing.module').then((m) => m.LandingModule),
+  },
 ];
 
 @NgModule({

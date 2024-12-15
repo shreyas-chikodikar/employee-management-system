@@ -13,6 +13,6 @@ export class LoginComponent {
   constructor(private route: Router) {}
 
   navigate() {
-    this.route.navigate(['employee-list']);
+    this.route.navigate(['landing']);
   }
 }

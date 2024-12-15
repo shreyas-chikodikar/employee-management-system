@@ -11,16 +11,18 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { LandingModule } from './landing/landing.module';
+import { SharedDataService } from 'src/services/shared-data.service';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, EmployeeListComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    LandingModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
@@ -30,7 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [SharedDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
