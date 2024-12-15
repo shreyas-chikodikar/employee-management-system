@@ -7,6 +7,25 @@ body {
   height: 100%;
   font-size: 10px;
 }
+
+@media only screen and (min-width: 2400px) {
+  html,
+  body {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 3400px) {
+  html,
+  body {
+    font-size: 30px;
+  }
+  .mat-typography {
+    font-size: 30px !important;
+    line-height: normal;
+  }
+}
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -80,4 +99,25 @@ mat-datepicker-content .mat-datepicker-actions .bottom-date-buttons {
 .header2 .next-tuesday,
 .header2 .next-week {
   display: none;
+}
+
+mat-calendar .mat-calendar-body-selected {
+  background-color: var(--base-color);
+}
+
+mat-calendar
+  .mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  border-color: var(--base-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .cdk-overlay-pane.mat-datepicker-popup {
+    width: 90%;
+  }
+  .cdk-overlay-pane .mat-datepicker-content,
+  .cdk-overlay-pane .mat-datepicker-content .mat-calendar {
+    width: inherit;
+  }
 }

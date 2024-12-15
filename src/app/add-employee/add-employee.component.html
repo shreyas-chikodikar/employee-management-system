@@ -44,13 +44,28 @@
         <mat-datepicker
           panelClass="header1"
           [calendarHeaderComponent]="exampleHeader"
+          (opened)="opened()"
           #picker1
-        ></mat-datepicker>
+        >
+          <mat-datepicker-actions>
+            <div style="width: 100%; display: flex">
+              <mat-icon matPrefix>event</mat-icon>
+              {{ displayDate | date : "d MMM YYYY" }}
+            </div>
+            <button mat-raised-button color="primary" matDatepickerCancel>
+              Cancel
+            </button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              Save
+            </button>
+          </mat-datepicker-actions></mat-datepicker
+        >
       </mat-form-field>
     </mat-grid-tile>
     <!-- to date -->
     <mat-grid-tile [colspan]="dateCols">
       <mat-form-field appearance="outline" style="width: 100%; margin: 1rem">
+        <mat-label *ngIf="!addEmployeeForm.get('to')?.value">No Date</mat-label>
         <input matInput [matDatepicker]="picker2" formControlName="to" />
         <mat-datepicker-toggle matIconPrefix [for]="picker2">
           <mat-icon matDatepickerToggleIcon> event </mat-icon>
@@ -59,7 +74,19 @@
           panelClass="header2"
           [calendarHeaderComponent]="exampleHeader"
           #picker2
-        >
+          (opened)="opened()"
+          ><mat-datepicker-actions>
+            <div style="width: 100%; display: flex">
+              <mat-icon matPrefix>event</mat-icon>
+              {{ (displayDate | date : "d MMM YYYY") || "No Date" }}
+            </div>
+            <button mat-raised-button color="primary" matDatepickerCancel>
+              Cancel
+            </button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              Save
+            </button>
+          </mat-datepicker-actions>
         </mat-datepicker>
       </mat-form-field>
     </mat-grid-tile>

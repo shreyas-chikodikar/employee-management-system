@@ -73,6 +73,7 @@ export class AddEmployeeComponent implements OnInit {
   ];
   breakpoint: any;
   dateCols: any;
+  displayDate: any;
 
   exampleHeader = ExampleHeader;
 
@@ -119,6 +120,15 @@ export class AddEmployeeComponent implements OnInit {
       to: getEmployee?.to,
     });
   }
+
+  opened() {
+    this.displayDate = null;
+    setTimeout(() => {
+      this.displayDate = document
+        .getElementsByClassName('mat-calendar-body-active')[0]
+        .getAttribute('aria-label');
+    }, 100);
+  }
 }
 
 @Component({
@@ -133,7 +143,6 @@ export class AddEmployeeComponent implements OnInit {
 
       .example-header-label {
         flex: 1;
-        height: 1em;
         font-weight: 500;
         text-align: center;
       }
@@ -191,13 +200,15 @@ export class AddEmployeeComponent implements OnInit {
       </button>
     </div>
     <div class="example-header">
-      <button mat-icon-button (click)="previousClicked()">
-        <mat-icon>arrow_left</mat-icon>
-      </button>
-      <span class="example-header-label">{{ periodLabel }}</span>
-      <button mat-icon-button (click)="nextClicked()">
-        <mat-icon>arrow_right</mat-icon>
-      </button>
+      <div style="display: flex; align-items: center; margin: 0 auto">
+        <button mat-icon-button (click)="previousClicked()">
+          <mat-icon>arrow_left</mat-icon>
+        </button>
+        <span class="example-header-label">{{ periodLabel }}</span>
+        <button mat-icon-button (click)="nextClicked()">
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+      </div>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
