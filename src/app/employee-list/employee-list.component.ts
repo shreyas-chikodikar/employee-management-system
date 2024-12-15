@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../model/employee.component';
+import { Employee } from '../../model/employee';
 import { Router } from '@angular/router';
 import { SharedDataService } from '../../services/shared-data.service';
 
