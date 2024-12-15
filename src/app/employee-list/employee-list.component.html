@@ -1,56 +1,53 @@
-<div class="mainDiv">
-  <mat-toolbar class="theme-color" color="primary">
-    <mat-toolbar-row>
-      <span>Employee List</span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <div class="contentDiv">
-    <img
-      *ngIf="employeeList.length == 0"
-      src="../../assets/no-employee.png"
-      id="noemployee"
-      alt="no-employee"
-    />
+<img
+  *ngIf="employeeList.length == 0"
+  src="../../assets/no-employee.png"
+  id="noemployee"
+  alt="no-employee"
+/>
 
-    <div *ngIf="employeeList.length > 0" style="width: 100%">
-      <div>
-        <p class="header-font">Current Employees</p>
-        <mat-card>
-          <mat-card-content class="employee-card">
-            <div *ngFor="let employee of currentEmployees" class="column-flex">
-              <span style="font-weight: bold">{{ employee.employeename }}</span>
-              <span>{{ employee.role }}</span>
-              <span>From {{ employee.from | date : "dd MMM,yyy" }}</span>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div>
-        <p class="header-font">Previous Employees</p>
-        <mat-card>
-          <mat-card-content class="employee-card">
-            <div *ngFor="let employee of previousEmployees" class="column-flex">
-              <span style="font-weight: bold">{{ employee.employeename }}</span>
-              <span>{{ employee.role }}</span>
-              <span
-                >{{ employee.from | date : "dd MMM,yyy" }} -
-                {{ employee.to | date : "dd MMM,yyy" }}</span
-              >
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+<div class="column-flex" style="height: 100%">
+  <div
+    *ngIf="employeeList.length > 0"
+    style="width: 100%; overflow: auto; height: 100%"
+  >
+    <div>
+      <p class="header-font">Current Employees</p>
+      <mat-card>
+        <mat-card-content class="employee-card">
+          <div
+            *ngFor="let employee of currentEmployees"
+            class="column-flex list"
+          >
+            <span style="font-weight: bold">{{ employee.employeename }}</span>
+            <span>{{ employee.role }}</span>
+            <span>From {{ employee.from | date : "dd MMM,yyy" }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div>
+      <p class="header-font">Previous Employees</p>
+      <mat-card>
+        <mat-card-content class="employee-card">
+          <div
+            *ngFor="let employee of previousEmployees"
+            class="column-flex list"
+          >
+            <span style="font-weight: bold">{{ employee.employeename }}</span>
+            <span>{{ employee.role }}</span>
+            <span
+              >{{ employee.from | date : "dd MMM,yyy" }} -
+              {{ employee.to | date : "dd MMM,yyy" }}</span
+            >
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
-  <footer
-    style="
-      background-color: lightgrey;
-      color: rgb(165, 164, 164);
-      display: flex;
-      justify-content: space-between;
-    "
-  >
-    <span>Swipe left to delete</span>
-    <button class="add-button" mat-fab><mat-icon>add</mat-icon></button>
+  <footer>
+    <span style="margin: 1rem">Swipe left to delete</span>
+    <button class="add-button" mat-fab (click)="addEmployee()">
+      <mat-icon>add</mat-icon>
+    </button>
   </footer>
 </div>
