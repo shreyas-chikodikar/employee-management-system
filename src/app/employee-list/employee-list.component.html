@@ -6,15 +6,18 @@
 />
 
 <div class="column-flex" style="height: 100%">
-  <div
-    *ngIf="employeeList.length > 0"
-    style="width: 100%; overflow: auto; height: 100%"
-  >
+  <div *ngIf="employeeList.length > 0" class="emp-list">
     <div>
       <p class="header-font">Current Employees</p>
       <mat-card>
         <mat-card-content class="employee-card">
-          <div *ngFor="let employee of currentEmployees" class="list row-flex">
+          <div
+            *ngFor="let employee of currentEmployees"
+            class="list row-flex"
+            cdkDragLockAxis="x"
+            cdkDrag
+            (cdkDragMoved)="onDragMoved($event)"
+          >
             <div class="column-flex">
               <span style="font-weight: bold">{{ employee.employeename }}</span>
               <span>{{ employee.role }}</span>
@@ -22,7 +25,14 @@
             </div>
             <div class="theme-icons">
               <mat-icon (click)="edit(employee.id)">edit</mat-icon>
-              <mat-icon (click)="delete(employee.id)">delete</mat-icon>
+              <mat-icon
+                (click)="
+                  delete(employee.id);
+                  openSnackBar('Employee data has been deleted', 'undo')
+                "
+                class="material-symbols-outlined"
+                >delete</mat-icon
+              >
             </div>
           </div>
         </mat-card-content>
@@ -32,7 +42,13 @@
       <p class="header-font">Previous Employees</p>
       <mat-card>
         <mat-card-content class="employee-card">
-          <div *ngFor="let employee of previousEmployees" class="row-flex list">
+          <div
+            *ngFor="let employee of previousEmployees"
+            class="row-flex list"
+            cdkDragLockAxis="x"
+            cdkDrag
+            (cdkDragMoved)="onDragMoved($event)"
+          >
             <div class="column-flex">
               <span style="font-weight: bold">{{ employee.employeename }}</span>
               <span>{{ employee.role }}</span>
@@ -51,7 +67,7 @@
     </div>
   </div>
   <footer>
-    <span style="margin: 1rem">Swipe left to delete. Click card to edit.</span>
+    <span style="margin: 1rem">Swipe left to delete, edit.</span>
     <button class="add-button" mat-fab (click)="addEmployee()">
       <mat-icon>add</mat-icon>
     </button>

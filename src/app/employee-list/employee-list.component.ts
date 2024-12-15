@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Employee } from '../../model/employee';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SharedDataService } from '../../services/shared-data.service';
 import { liveQuery } from 'dexie';
 import { db, Employees } from '../../model/employeedb';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,6 +18,14 @@ export class EmployeeListComponent implements OnInit {
   previousEmployees: Employee[] = [];
 
   employeeList$ = liveQuery(() => db.employees.toArray());
+
+  lastX: any = 0;
+
+  private _snackBar = inject(MatSnackBar);
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 
   constructor(
     private router: Router,
@@ -55,5 +64,16 @@ export class EmployeeListComponent implements OnInit {
 
   async delete(id: any) {
     await db.employees.delete(Number(id));
+  }
+
+  onDragMoved(event: any) {
+    const currentX = event.pointerPosition.x;
+
+    if (currentX > this.lastX) {
+      const element = event.source.getRootElement();
+      element.style.transform = `translate3d(${this.lastX}px, 0, 0)`;
+    } else {
+      this.lastX = currentX;
+    }
   }
 }

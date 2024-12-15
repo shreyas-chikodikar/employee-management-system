@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { LandingComponent } from './landing.component';
+import { CdkDrag } from '@angular/cdk/drag-drop';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { LandingComponent } from './landing.component';
     MatToolbarModule,
     MatIconModule,
     CommonModule,
+    CdkDrag,
+    MatSnackBarModule,
     RouterModule.forChild([
       {
         path: '',

@@ -97,7 +97,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    if (!this.employees.id) {
+    if (!this.employees?.id) {
       await db.employees.add({
         employeename: form.get('employeeName')?.value || '',
         role: form.get('role')?.value || '',
