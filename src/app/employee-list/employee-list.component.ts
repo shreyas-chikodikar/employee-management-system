@@ -53,7 +53,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addEmployee() {
-    this.router.navigate(['/add-employee'], { relativeTo: this.route });
+    this.router.navigate(['../add-employee'], { relativeTo: this.route });
   }
 
   identifyList(index: number, list: Employees) {
@@ -61,7 +61,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   edit(id: any) {
-    this.router.navigate(['/add-employee', id], { relativeTo: this.route });
+    this.router.navigate(['../add-employee', id], { relativeTo: this.route });
   }
 
   async delete(id: any) {

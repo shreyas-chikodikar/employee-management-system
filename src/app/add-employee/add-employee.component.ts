@@ -112,13 +112,19 @@ export class AddEmployeeComponent implements OnInit {
         to: form.get('to')?.value ? new Date(form.get('to')?.value) : undefined,
       });
     }
-    this.router.navigate(['../employee-list']);
+    this.edit
+      ? this.router.navigate(['../../employee-list'], {
+          relativeTo: this._route,
+        })
+      : this.router.navigate(['../employee-list'], { relativeTo: this._route });
   }
 
   onCancel() {
     this.edit
-      ? this.router.navigate(['../../employee-list'])
-      : this.router.navigate(['../employee-list']);
+      ? this.router.navigate(['../../employee-list'], {
+          relativeTo: this._route,
+        })
+      : this.router.navigate(['../employee-list'], { relativeTo: this._route });
   }
 
   async getEmployee(id: any) {
