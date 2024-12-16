@@ -1,2 +1,2 @@
-Employee Management System
-**Click Login to login to app**
+Employee Management System! <br>
+**Click Login to login to app.**
